@@ -75,6 +75,7 @@ hal::bsp_pins!(
         // HUB75 G2
         name: mtx_g2,
         aliases: {
+            PushPullOutput: MtxG2,
             Reset: MtxG2Reset,
         }
     }
@@ -83,6 +84,7 @@ hal::bsp_pins!(
         // HUB75 B2
         name: mtx_b2,
         aliases: {
+            PushPullOutput: MtxB2,
             Reset: MtxB2Reset,
         }
     }
@@ -91,6 +93,7 @@ hal::bsp_pins!(
         // HUB75 CLK
         name: mtx_clk,
         aliases: {
+            PushPullOutput: MtxClk,
             Reset: MtxClkReset,
         }
     }
@@ -99,6 +102,7 @@ hal::bsp_pins!(
         // HUB75 ADDR A
         name: mtx_addra,
         aliases: {
+            PushPullOutput: MtxAddra,
             Reset: MtxAddraReset,
         }
     }
@@ -107,6 +111,7 @@ hal::bsp_pins!(
         // HUB75 ADDR C
         name: mtx_addrc,
         aliases: {
+            PushPullOutput: MtxAddrc,
             Reset: MtxAddrcReset,
         }
     }
@@ -192,7 +197,7 @@ hal::bsp_pins!(
         // HUB75 R1
         name: mtx_r1,
         aliases: {
-            AlternateB: MtxR1,
+            PushPullOutput: MtxR1,
             Reset: MtxR1Reset,
         }
     }
@@ -201,7 +206,7 @@ hal::bsp_pins!(
         // HUB75 G1
         name: mtx_g1,
         aliases: {
-            AlternateB: MtxG1,
+            PushPullOutput: MtxG1,
             Reset: MtxG1Reset,
         }
     }
@@ -218,7 +223,7 @@ hal::bsp_pins!(
         // HUB75 ADDR B
         name: mtx_addrb,
         aliases: {
-            AlternateB: MtxAddrb,
+            PushPullOutput: MtxAddrb,
             Reset: MtxAddrbReset,
         }
     }
@@ -228,7 +233,7 @@ hal::bsp_pins!(
         // HUB75 LAT
         name: mtx_lat,
         aliases: {
-            AlternateB: MtxLat,
+            PushPullOutput: MtxLat,
             Reset: MtxLatReset,
         }
     }
@@ -237,6 +242,7 @@ hal::bsp_pins!(
         // HUB75 ADDR D
         name: mtx_addrd,
         aliases: {
+            PushPullOutput: MtxAddrd,
             Reset: MtxAddrdReset,
         }
     }
@@ -254,7 +260,7 @@ hal::bsp_pins!(
         // HUB75 OE
         name: mtx_oe,
         aliases: {
-            AlternateC: MtxOe,
+            PushPullOutput: MtxOe,
             Reset: MtxOeReset,
         }
     }
@@ -263,7 +269,7 @@ hal::bsp_pins!(
         // HUB75 ADDR E
         name: mtx_addre,
         aliases: {
-            AlternateC: MtxAddre,
+            PushPullOutput: MtxAddre,
             Reset: MtxAddreReset,
         }
     }
@@ -300,7 +306,7 @@ hal::bsp_pins!(
         // HUB75 B1
         name: mtx_b1,
         aliases: {
-            AlternateD: MtxB1,
+            PushPullOutput: MtxB1,
             Reset: MtxB1Reset,
         }
     }
@@ -309,7 +315,7 @@ hal::bsp_pins!(
         // HUB75 R2
         name: mtx_r2,
         aliases: {
-            AlternateD: MtxR2,
+            PushPullOutput: MtxR2,
             Reset: MtxR2Reset,
         }
     }
@@ -357,20 +363,20 @@ impl Pins {
         let stemma = Stemma { a0: self.a0 };
 
         let mtx = Matrix {
-            r1: self.mtx_r1,
-            g1: self.mtx_g1,
-            b1: self.mtx_b1,
-            r2: self.mtx_r2,
-            g2: self.mtx_g2,
-            b2: self.mtx_b2,
-            clk: self.mtx_clk,
-            lat: self.mtx_lat,
-            oe: self.mtx_oe,
-            addra: self.mtx_addra,
-            addrb: self.mtx_addrb,
-            addrc: self.mtx_addrc,
-            addrd: self.mtx_addrd,
-            addre: self.mtx_addre,
+            r1: self.mtx_r1.into_push_pull_output(),
+            g1: self.mtx_g1.into_push_pull_output(),
+            b1: self.mtx_b1.into_push_pull_output(),
+            r2: self.mtx_r2.into_push_pull_output(),
+            g2: self.mtx_g2.into_push_pull_output(),
+            b2: self.mtx_b2.into_push_pull_output(),
+            addra: self.mtx_addra.into_push_pull_output(),
+            addrb: self.mtx_addrb.into_push_pull_output(),
+            addrc: self.mtx_addrc.into_push_pull_output(),
+            addrd: self.mtx_addrd.into_push_pull_output(),
+            addre: self.mtx_addre.into_push_pull_output(),
+            clk: self.mtx_clk.into_push_pull_output(),
+            lat: self.mtx_lat.into_push_pull_output(),
+            oe: self.mtx_oe.into_push_pull_output(),
         };
 
         let esp = Esp {
@@ -462,18 +468,18 @@ pub struct Usb {
 }
 
 pub struct Matrix {
-    pub r1: MtxR1Reset,
-    pub g1: MtxG1Reset,
-    pub b1: MtxB1Reset,
-    pub r2: MtxR2Reset,
-    pub g2: MtxG2Reset,
-    pub b2: MtxB2Reset,
-    pub clk: MtxClkReset,
-    pub lat: MtxLatReset,
-    pub oe: MtxOeReset,
-    pub addra: MtxAddraReset,
-    pub addrb: MtxAddrbReset,
-    pub addrc: MtxAddrcReset,
-    pub addrd: MtxAddrdReset,
-    pub addre: MtxAddreReset,
+    pub r1: MtxR1,
+    pub g1: MtxG1,
+    pub b1: MtxB1,
+    pub r2: MtxR2,
+    pub g2: MtxG2,
+    pub b2: MtxB2,
+    pub addra: MtxAddra,
+    pub addrb: MtxAddrb,
+    pub addrc: MtxAddrc,
+    pub addrd: MtxAddrd,
+    pub addre: MtxAddre,
+    pub clk: MtxClk,
+    pub lat: MtxLat,
+    pub oe: MtxOe,
 }

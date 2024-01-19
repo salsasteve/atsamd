@@ -32,6 +32,9 @@ features = ["critical-section-single-core"]
 
 [dev-dependencies]
 panic-halt = "0.2"
+ hub75 = { git = "https://github.com/salsasteve/hub75-rs.git", version = "^0.1.1", features = ["size-64x64"] }
+embedded-graphics = "0.5.2"
+embedded-hal = "1.0.0"
 
 [features]
 # ask the HAL to enable atsamd51j support
@@ -43,3 +46,6 @@ usb = ["atsamd-hal/usb", "usb-device"]
 
 [[example]]
 name = "blinky_basic"
+
+[[example]]
+name = "led_matrix"
