@@ -28,27 +28,27 @@ fn main() -> ! {
     let mut delay = Delay::new(core.SYST, &mut clocks);
     delay.delay_ms(400u16);
 
-    let pins = Pins::new(peripherals.PORT);
+    let pins = Pins::new(peripherals.PORT).split();
 
     // Initialize matrix pins
     let gpio_pins = (
-        pins.mtx_r1.into_push_pull_output(),
-        pins.mtx_g1.into_push_pull_output(),
-        pins.mtx_b1.into_push_pull_output(),
-        pins.mtx_r2.into_push_pull_output(),
-        pins.mtx_g2.into_push_pull_output(),
-        pins.mtx_b2.into_push_pull_output(),
-        pins.mtx_addra.into_push_pull_output(),
-        pins.mtx_addrb.into_push_pull_output(),
-        pins.mtx_addrc.into_push_pull_output(),
-        pins.mtx_addrd.into_push_pull_output(),
-        pins.mtx_addre.into_push_pull_output(),
-        pins.mtx_clk.into_push_pull_output(),
-        pins.mtx_lat.into_push_pull_output(),
-        pins.mtx_oe.into_push_pull_output(),
+        pins.mtx.r1,
+        pins.mtx.g1,
+        pins.mtx.b1,
+        pins.mtx.r2,
+        pins.mtx.g2,
+        pins.mtx.b2,
+        pins.mtx.addra,
+        pins.mtx.addrb,
+        pins.mtx.addrc,
+        pins.mtx.addrd,
+        pins.mtx.addre,
+        pins.mtx.clk,
+        pins.mtx.lat,
+        pins.mtx.oe,
     );
 
-    let brightness_bits = 2;
+    let brightness_bits = 1;
     let mut matrix = Hub75::new(gpio_pins, brightness_bits);
 
     loop {
@@ -60,6 +60,6 @@ fn main() -> ! {
         );
         matrix.output(&mut delay);
 
-        delay.delay_ms(10u32);
+        // delay.delay_ms(10u32);
     }
 }

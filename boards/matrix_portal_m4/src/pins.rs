@@ -294,10 +294,12 @@ hal::bsp_pins!(
     }
     PA14 {
         // D13 LED
+        // PWM capable
         name: led,
         aliases: {
             PushPullOutput: RedLed,
             Reset: RedLedReset,
+            AlternateG: RedLedPwm,
         }
     }
 
