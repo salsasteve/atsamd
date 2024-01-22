@@ -1,10 +1,13 @@
 # Unreleased Changes
 
+- CI/CD pipeline now uses `cargo clippy` instead of `cargo build` and denies clippy warnings by default
+- Fix HAL clippy lints
 - Add compile error for combined `library` and `dma` features
 - Add `dma` feature to docs metadata
 - Update the PACs to svd2rust 0.30.2.
 - Fix warnings for thumbv7 targets
 - Update README.md - moves some content to wiki
+- Remove pin `pa28` from the `d21el` target (#717)
 
 # v0.16.0
 
