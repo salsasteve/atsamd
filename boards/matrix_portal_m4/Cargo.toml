@@ -30,20 +30,32 @@ optional = true
 version = "0.7"
 features = ["critical-section-single-core"]
 
+# [dependencies.micromath]
+# version = "0.5.1"
+# optional = true
+
 [dev-dependencies]
 panic-halt = "0.2"
+hub75 = { git = "https://github.com/salsasteve/hub75-rs.git", version = "^0.1.1", features = ["size-64x64"] }
+embedded-graphics = "0.5.2"
+embedded-hal = "1.0.0"
+micromath = "0.5.1"
 
 [features]
 # ask the HAL to enable atsamd51j support
 default = ["rt", "atsamd-hal/samd51j", "atsamd-hal/samd51"]
 rt = ["cortex-m-rt", "atsamd-hal/samd51j-rt"]
 unproven = ["atsamd-hal/unproven"]
-usb = ["atsamd-hal/usb", "usb-device"]
+
 
 
 [[example]]
 name = "blinky_basic"
 
 [[example]]
+name = "led_matrix"
+
+[[example]]
 name = "pwm"
 required-features = ["unproven"]
+# cargo hf2 --release --example pwm  --vid 0x239a --pid 0x00c9 --features="unproven"
